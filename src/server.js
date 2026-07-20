@@ -9,6 +9,7 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import helmet from 'helmet';
+import { errors } from 'celebrate';
 
 const app = express();
 
@@ -25,6 +26,9 @@ app.use(logger);
 app.use(notesRoutes);
 
 app.use(notFoundHandler);
+
+app.use(errors());
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT ?? 3000;
