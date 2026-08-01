@@ -1,17 +1,17 @@
 import { Router } from 'express';
 import { authenticate } from '../middleware/authenticate.js';
 import { updateUserAvatar } from '../controllers/userController.js';
-import { uploadAvatar } from '../middleware/multer.js';
+import { upload } from '../middleware/multer.js';
 
 const router = Router();
 
 router.patch(
   '/users/me/avatar',
   authenticate,
-  uploadAvatar.single('photo'),
+  upload.single('avatar'),
   updateUserAvatar,
 );
 
-// input type="file" name="photo"
+// input type="file" name="avatar"
 
 export default router;
